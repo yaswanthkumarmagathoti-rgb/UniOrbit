@@ -4,176 +4,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#07111f">
+    <meta name="theme-color" content="#0d1930">
+    <title>Create Account | UniOrbit</title>
 
-    <title>Create Account | UniOrbit — RGUKT Ongole</title>
-
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="register.css">
     <script src="register.js" defer></script>
-    
 </head>
-
 <body class="register-page">
 
-    <div class="register-shell">
+    <main class="register-shell">
 
-        <!-- Left-side UniOrbit branding -->
-        <aside class="register-brand">
+        <!-- Left branding panel -->
+        <section class="register-brand">
+            <a class="brand-logo" href="index.html" aria-label="UniOrbit home">
+                <span class="brand-mark">U</span>
+                <span>UniOrbit</span>
+            </a>
 
-            <div class="register-brand-top">
-                <div class="register-mark" aria-hidden="true">U</div>
+            <div class="brand-content">
+                <p class="eyebrow">RGUKT ONGOLE</p>
 
-                <div>
-                    <p class="register-brand-name">
-                        Uni<span>Orbit</span>
-                    </p>
-                    <p class="register-brand-subtitle">
-                        RGUKT ONGOLE
-                    </p>
-                </div>
-            </div>
-
-            <div class="register-brand-copy">
-
-                <div class="register-orbit-art" aria-hidden="true">
-                    <div class="orbit-ring"></div>
-                    <div class="orbit-ring ring-two"></div>
-                    <div class="orbit-ring ring-three"></div>
-                    <div class="orbit-core">U</div>
-                </div>
-
-                <div class="register-eyebrow">
-                    YOUR CAMPUS. CONNECTED.
-                </div>
-
-                <h1 class="register-brand-heading">
-                    Your journey<br>
-                    starts <span>here.</span>
+                <h1>
+                    Join your campus.<br>
+                    Shape your<br>
+                    <span>future.</span>
                 </h1>
 
-                <p class="register-brand-description">
-                    One connected space for learning, collaboration,
-                    campus updates and the opportunities that shape
-                    your future.
+                <p class="brand-description">
+                    Create your account and discover a connected space
+                    for learning, collaboration, campus updates, and
+                    university life.
                 </p>
+                
+                <div class="brand-features">
+                    <div class="brand-feature">
+                        <span class="feature-icon">✦</span>
+                        <div>
+                            <strong>One Campus</strong>
+                            <small>Everything in one place</small>
+                        </div>
+                    </div>
+
+                    <div class="brand-feature">
+                        <span class="feature-icon">⌘</span>
+                        <div>
+                            <strong>Stay Connected</strong>
+                            <small>Students and faculty together</small>
+                        </div>
+                    </div>
+
+                    <div class="brand-feature">
+                        <span class="feature-icon">◈</span>
+                        <div>
+                            <strong>Learn & Grow</strong>
+                            <small>Make your campus journey count</small>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
-            <div class="register-brand-footer">
-                <span>UNIVERSITY PORTAL</span>
-                <span class="register-status">CAMPUS CONNECT</span>
+            <div class="orbit-art" aria-hidden="true">
+                <span class="orbit orbit-one"></span>
+                <span class="orbit orbit-two"></span>
+                <span class="orbit orbit-three"></span>
+                <span class="orbit-center"></span>
             </div>
 
-        </aside>
+            <p class="brand-footer">
+                CONNECTING CAMPUS, CREATING POSSIBILITIES
+            </p>
+        </section>
 
-        <!-- Registration form -->
-        <main class="register-main">
+        <!-- Right registration panel -->
+        <section class="register-main">
+            <div class="register-card">
 
-            <section class="register-card"
-                     aria-labelledby="registerHeading">
-
-                <h2 class="register-card-heading" id="registerHeading">
-                    Create your account
-                </h2>
-
-                <p class="register-card-intro">
-                    Join UniOrbit with your official university details.
-                    Fields marked by the form are required.
+                <p class="form-eyebrow">GET STARTED</p>
+                <h2>Create your account</h2>
+                <p class="form-intro">
+                    Join UniOrbit with your university credentials.
                 </p>
 
-                <form class="register-form"
-                      id="registerForm"
-                      novalidate>
+                <form id="registerForm" class="register-form">
 
-                    <!-- Role -->
-                    <div class="register-field">
-                        <label class="register-label" for="role">
-                            Register as
-                        </label>
-
-                        <select class="register-control"
-                                id="role"
-                                name="role"
-                                required>
+                    <div class="form-field">
+                        <label for="role">Account type</label>
+                        <select id="role" name="role" required>
                             <option value="">Select your role</option>
                             <option value="student">Student</option>
                             <option value="faculty">Faculty</option>
                         </select>
                     </div>
 
-                    <!-- Full name -->
-                    <div class="register-field">
-                        <label class="register-label" for="fullName">
-                            Full name
-                        </label>
-
-                        <input class="register-control"
-                               type="text"
-                               id="fullName"
-                               name="fullName"
-                               placeholder="Enter your full name"
-                               autocomplete="name"
-                               required>
+                    <div class="form-field">
+                        <label for="fullName">Full name</label>
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required
+                        >
                     </div>
 
-                    <!-- University email -->
-                    <div class="register-field">
-                        <label class="register-label" for="email">
-                            University email
-                        </label>
-
-                        <input class="register-control"
-                               type="email"
-                               id="email"
-                               name="email"
-                               placeholder="YourID@rguktong.ac.in"
-                               autocomplete="email"
-                               required>
-
-                        <p class="register-help">
-                            Use your official @rguktong.ac.in address.
-                        </p>
+                    <div class="form-field">
+                        <label for="email">University email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="YourID@rguktong.ac.in"
+                            autocomplete="email"
+                            required
+                        >
+                        <small>Use your @rguktong.ac.in email address.</small>
                     </div>
 
-                    <!-- Student-only fields -->
-                    <div class="register-field" id="studentField" hidden>
-                        <label class="register-label" for="studentId">
-                            Student ID
-                        </label>
-
-                        <input class="register-control"
-                               type="text"
-                               id="studentId"
-                               name="studentId"
-                               placeholder="Enter your student ID"
-                               autocomplete="off">
+                    <div class="form-field" id="studentField" hidden>
+                        <label for="studentId">Student ID</label>
+                        <input
+                            type="text"
+                            id="studentId"
+                            name="studentId"
+                            placeholder="Enter your student ID"
+                        >
                     </div>
 
-                    <!-- Faculty-only fields -->
-                    <div class="register-field" id="facultyField" hidden>
-                        <label class="register-label" for="facultyId">
-                            Faculty ID
-                        </label>
-
-                        <input class="register-control"
-                               type="text"
-                               id="facultyId"
-                               name="facultyId"
-                               placeholder="Enter your faculty ID"
-                               autocomplete="off">
+                    <div class="form-field" id="facultyField" hidden>
+                        <label for="facultyId">Faculty ID</label>
+                        <input
+                            type="text"
+                            id="facultyId"
+                            name="facultyId"
+                            placeholder="Enter your faculty ID"
+                        >
                     </div>
 
-                    <!-- Department -->
-                    <div class="register-field">
-                        <label class="register-label" for="department">
-                            Department
-                        </label>
-
-                        <select class="register-control"
-                                id="department"
-                                name="department"
-                                required>
-                            <option value="">Select your department</option>
+                    <div class="form-field">
+                        <label for="department">Department</label>
+                        <select id="department" name="department" required>
+                            <option value="">Select department</option>
                             <option value="CSE">Computer Science (CSE)</option>
                             <option value="ECE">Electronics (ECE)</option>
                             <option value="EEE">Electrical (EEE)</option>
@@ -183,15 +155,9 @@
                         </select>
                     </div>
 
-                    <!-- Student academic year -->
-                    <div class="register-field" id="yearField" hidden>
-                        <label class="register-label" for="academicYear">
-                            Academic year
-                        </label>
-
-                        <select class="register-control"
-                                id="academicYear"
-                                name="academicYear">
+                    <div class="form-field" id="yearField" hidden>
+                        <label for="academicYear">Academic year</label>
+                        <select id="academicYear" name="academicYear">
                             <option value="">Select academic year</option>
                             <option value="P1">P1</option>
                             <option value="P2">P2</option>
@@ -202,76 +168,58 @@
                         </select>
                     </div>
 
-                    <!-- Password -->
-                    <div class="register-field">
-                        <label class="register-label" for="newPassword">
-                            Create password
-                        </label>
-
-                        <input class="register-control"
-                               type="password"
-                               id="newPassword"
-                               name="newPassword"
-                               placeholder="Create a strong password"
-                               minlength="8"
-                               autocomplete="new-password"
-                               aria-describedby="passwordStrength"
-                               required>
-
-                        <p class="register-password-strength"
-                           id="passwordStrength"
-                           aria-live="polite">
-                            Use 8+ characters, uppercase, lowercase,
-                            a number and a special character.
-                        </p>
+                    <div class="form-field">
+                        <label for="newPassword">Password</label>
+                        <input
+                            type="password"
+                            id="newPassword"
+                            name="newPassword"
+                            placeholder="Create a strong password"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+                        <small id="passwordStrength">
+                            Use 8+ characters with uppercase, lowercase,
+                            number, and special character.
+                        </small>
                     </div>
 
-                    <!-- Confirm password -->
-                    <div class="register-field">
-                        <label class="register-label" for="confirmPassword">
-                            Confirm password
-                        </label>
-
-                        <input class="register-control"
-                               type="password"
-                               id="confirmPassword"
-                               name="confirmPassword"
-                               placeholder="Enter your password again"
-                               minlength="8"
-                               autocomplete="new-password"
-                               required>
+                    <div class="form-field">
+                        <label for="confirmPassword">Confirm password</label>
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Re-enter your password"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
                     </div>
 
-                    <!-- Validation feedback -->
-                    <p class="register-message"
-                       id="registerMessage"
-                       role="status"
-                       aria-live="polite"></p>
+                    <p id="registerMessage" role="status" aria-live="polite"></p>
 
-                    <button class="register-submit"
-                            type="submit"
-                            id="registerButton">
-                        Create Account <span aria-hidden="true">→</span>
+                    <button type="submit" id="registerButton">
+                        <span>Create Account</span>
+                        <span aria-hidden="true">→</span>
                     </button>
 
                 </form>
 
-                <p class="register-signin">
+                <p class="signin-link">
                     Already have an account?
                     <a href="index.html">Sign in</a>
                 </p>
 
-                <p class="register-security-note">
-                    UniOrbit · RGUKT Ongole<br>
-                    Your account will be created after the registration
-                    form is connected to the secure backend.
+                <p class="security-note">
+                    UniOrbit · A smarter campus experience
                 </p>
 
-            </section>
+            </div>
+        </section>
 
-        </main>
-
-    </div>
+    </main>
 
 </body>
 </html>

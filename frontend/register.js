@@ -1,167 +1,143 @@
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("registerForm");
-
-    if (!form) {
-        console.error("Registration form not found.");
-        return;
-    }
-
     const role = document.getElementById("role");
+
     const studentField = document.getElementById("studentField");
     const facultyField = document.getElementById("facultyField");
     const yearField = document.getElementById("yearField");
 
     const studentId = document.getElementById("studentId");
     const facultyId = document.getElementById("facultyId");
+    const department = document.getElementById("department");
     const academicYear = document.getElementById("academicYear");
 
+    const fullName = document.getElementById("fullName");
     const email = document.getElementById("email");
     const password = document.getElementById("newPassword");
     const confirmPassword = document.getElementById("confirmPassword");
 
     const passwordStrength = document.getElementById("passwordStrength");
-    const message = document.getElementById("registerMessage");
+    const registerMessage = document.getElementById("registerMessage");
 
-    function showMessage(text, success = false) {
-        if (!message) return;
-
-        message.textContent = text;
-        message.style.color = success ? "#5de7c8" : "#ff8d9a";
-    }
-
-    // Display fields for the selected account type.
+    // Show fields based on the selected account type.
     function updateRoleFields() {
-        const selectedRole = role.value;
+        const isStudent = role.value === "student";
+        const isFaculty = role.value === "faculty";
 
-        if (studentField) {
-            studentField.hidden = selectedRole !== "student";
+        studentField.hidden = !isStudent;
+        facultyField.hidden = !isFaculty;
+        yearField.hidden = !isStudent;
+
+        studentId.required = isStudent;
+        facultyId.required = isFaculty;
+        academicYear.required = isStudent;
+
+        if (!isStudent) {
+            studentId.value = "";
+            academicYear.value = "";
         }
 
-        if (facultyField) {
-            facultyField.hidden = selectedRole !== "faculty";
+        if (!isFaculty) {
+            facultyId.value = "";
         }
-
-        if (yearField) {
-            yearField.hidden = selectedRole !== "student";
-        }
-
-        if (studentId) {
-            studentId.required = selectedRole === "student";
-        }
-
-        if (facultyId) {
-            facultyId.required = selectedRole === "faculty";
-        }
-
-        if (academicYear) {
-            academicYear.required = selectedRole === "student";
-        }
-
-        showMessage("");
     }
 
-    if (role) {
-        role.addEventListener("change", updateRoleFields);
-        updateRoleFields();
-    }
+    role.addEventListener("change", updateRoleFields);
+    updateRoleFields();
 
-    // Password-strength feedback.
+    // Check password strength as the user types.
     function checkPasswordStrength() {
         const value = password.value;
-
-        const requirements = [
-            {
-                test: value.length >= 8,
-                label: "at least 8 characters"
-            },
-            {
-                test: /[A-Z]/.test(value),
-                label: "an uppercase letter"
-            },
-            {
-                test: /[a-z]/.test(value),
-                label: "a lowercase letter"
-            },
-            {
-                test: /[0-9]/.test(value),
-                label: "a number"
-            },
-            {
-                test: /[^A-Za-z0-9]/.test(value),
-                label: "a special character"
-            }
+        const rules = [
+            value.length >= 8,
+            /[A-Z]/.test(value),
+            /[a-z]/.test(value),
+            /[0-9]/.test(value),
+            /[^A-Za-z0-9]/.test(value)
         ];
 
-        const missing = requirements.filter(item => !item.test);
-
-        if (passwordStrength) {
-            if (value.length === 0) {
-                passwordStrength.textContent =
-                    "Use 8+ characters, uppercase, lowercase, a number and a special character.";
-                passwordStrength.style.color = "";
-            } else if (missing.length === 0) {
-                passwordStrength.textContent = "Strong password ✓";
-                passwordStrength.style.color = "#5de7c8";
-            } else {
-                passwordStrength.textContent =
-                    "Still needed: " +
-                    missing.map(item => item.label).join(", ");
-                passwordStrength.style.color = "#ffb1a8";
-            }
+        if (!value) {
+            passwordStrength.textContent =
+                "Use 8+ characters with uppercase, lowercase, number, and special character.";
+            passwordStrength.style.color = "";
+            return false;
         }
 
-        return missing.length === 0;
+        const passed = rules.filter(Boolean).length;
+
+        if (passed <= 2) {
+            passwordStrength.textContent = "Weak password — add the missing requirements.";
+            passwordStrength.style.color = "#c0392b";
+        } else if (passed <= 4) {
+            passwordStrength.textContent = "Almost there — meet all password requirements.";
+            passwordStrength.style.color = "#b7791f";
+        } else {
+            passwordStrength.textContent = "Strong password ✓";
+            passwordStrength.style.color = "#147f84";
+        }
+
+        return rules.every(Boolean);
     }
 
-    if (password) {
-        password.addEventListener("input", checkPasswordStrength);
+    password.addEventListener("input", checkPasswordStrength);
+
+    // Validate the university email address.
+    function isUniversityEmail(value) {
+        return /^[^\s@]+@rguktong\.ac\.in$/i.test(value.trim());
     }
 
-    // Validate the form before any future backend submission.
-    form.addEventListener("submit", function (event) {
+    function showMessage(message, isError = true) {
+        registerMessage.textContent = message;
+        registerMessage.style.color = isError ? "#c0392b" : "#147f84";
+    }
+
+    // Validate the form.
+    form.addEventListener("submit", (event) => {
         event.preventDefault();
-        showMessage("");
+        registerMessage.textContent = "";
 
         if (!form.checkValidity()) {
             form.reportValidity();
+            showMessage("Please complete all required fields.");
             return;
         }
 
-        if (!role || !["student", "faculty"].includes(role.value)) {
-            showMessage("Please select Student or Faculty.");
-            role.focus();
-            return;
-        }
-
-        const normalizedEmail = email.value.trim().toLowerCase();
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@rguktong\.ac\.in$/;
-
-        if (!emailPattern.test(normalizedEmail)) {
-            showMessage(
-                "Please use your official @rguktong.ac.in university email."
-            );
+        if (!isUniversityEmail(email.value)) {
+            showMessage("Please use your @rguktong.ac.in university email.");
             email.focus();
             return;
         }
 
         if (!checkPasswordStrength()) {
-            showMessage("Please meet all password requirements.");
+            showMessage(
+                "Your password must have at least 8 characters, uppercase and lowercase letters, a number, and a special character."
+            );
             password.focus();
             return;
         }
 
         if (password.value !== confirmPassword.value) {
-            showMessage("Your passwords do not match.");
+            showMessage("Passwords do not match. Please try again.");
             confirmPassword.focus();
             return;
         }
 
-        showMessage(
-            "Form validation successful! Backend account creation is our next step.",
-            true
-        );
+        if (role.value === "student" && !studentId.value.trim()) {
+            showMessage("Please enter your student ID.");
+            studentId.focus();
+            return;
+        }
 
-        console.log("UniOrbit registration validation passed.");
+        if (role.value === "faculty" && !facultyId.value.trim()) {
+            showMessage("Please enter your faculty ID.");
+            facultyId.focus();
+            return;
+        }
+
+        showMessage(
+            "Validation successful! Account creation will be available after we connect the backend.",
+            false
+        );
     });
 });
