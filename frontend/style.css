@@ -1,0 +1,843 @@
+/* ==============================
+   1. GLOBAL SETTINGS
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --navy: #101d38;
+    --navy-light: #1b2d50;
+    --teal: #147d83;
+    --mint: #61d9d0;
+    --white: #ffffff;
+    --background: #f5f8fc;
+    --text: #17243b;
+    --muted: #7c8799;
+    --border: #dfe5ee;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+}
+
+/* ==============================
+   2. MAIN LAYOUT
+================================ */
+
+.login-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+}
+
+/* ==============================
+   3. LEFT BRANDING PANEL
+================================ */
+
+.brand-panel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 60px;
+    color: var(--white);
+    background:
+        radial-gradient(
+            circle at 80% 65%,
+            rgba(20, 125, 131, 0.3),
+            transparent 38%
+        ),
+        linear-gradient(145deg, var(--navy), #0b1428);
+}
+
+.brand-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    background-image: radial-gradient(
+        rgba(255, 255, 255, 0.6) 1px,
+        transparent 1px
+    );
+    background-size: 30px 30px;
+    pointer-events: none;
+}
+
+.brand-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 540px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 70px;
+}
+
+.logo-icon {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(97, 217, 208, 0.6);
+    border-radius: 14px;
+    background: rgba(97, 217, 208, 0.12);
+    color: var(--mint);
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.logo-name {
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+}
+
+.brand-label {
+    margin-bottom: 22px;
+    color: var(--mint);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.brand-content h1 {
+    position: relative;
+    z-index: 2;
+    font-size: clamp(38px, 4vw, 58px);
+    line-height: 1.17;
+    letter-spacing: -2px;
+}
+
+.brand-content h1 span {
+    color: var(--mint);
+}
+
+.brand-description {
+    max-width: 400px;
+    margin-top: 24px;
+    color: #bdc9dc;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.brand-footer {
+    margin-top: 55px;
+    color: #8495b0;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+/* ==============================
+   4. ORBIT ANIMATION
+================================ */
+
+.orbit-decoration {
+    position: absolute;
+    top: 50%;
+    right: -30px;
+    width: 220px;
+    height: 220px;
+    transform: translateY(-20%);
+    opacity: 0.75;
+    pointer-events: none;
+}
+
+.orbit {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(97, 217, 208, 0.35);
+    border-radius: 50%;
+}
+
+.orbit-one {
+    transform: rotateX(65deg) rotate(-25deg);
+    animation: orbit-spin 14s linear infinite;
+}
+
+.orbit-two {
+    transform: rotateY(65deg) rotate(35deg);
+    animation: orbit-spin 18s linear infinite reverse;
+}
+
+.orbit-three {
+    inset: 25px;
+    transform: rotateX(65deg) rotate(45deg);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.orbit-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--mint);
+    box-shadow: 0 0 25px var(--mint);
+    transform: translate(-50%, -50%);
+}
+
+@keyframes orbit-spin {
+    from {
+        rotate: 0deg;
+    }
+
+    to {
+        rotate: 360deg;
+    }
+}
+
+/* ==============================
+   5. RIGHT LOGIN PANEL
+================================ */
+
+.form-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 55px 40px;
+    background: var(--white);
+}
+
+.form-content {
+    width: 100%;
+    max-width: 410px;
+    animation: fade-in 0.7s ease both;
+}
+
+.welcome-label {
+    margin-bottom: 13px;
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+}
+
+.form-content h2 {
+    font-size: clamp(27px, 3vw, 34px);
+    letter-spacing: -1.1px;
+}
+
+.form-description {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* ==============================
+   6. INPUT FIELDS
+================================ */
+
+#loginForm {
+    margin-top: 36px;
+}
+
+.form-group {
+    margin-bottom: 23px;
+}
+
+.form-group > label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.form-group input {
+    width: 100%;
+    height: 52px;
+    padding: 0 15px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    background: #fbfcfe;
+    color: var(--text);
+    font: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input::placeholder {
+    color: #a1aabb;
+}
+
+.form-group input:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 4px rgba(20, 125, 131, 0.1);
+}
+
+/* Password input and show/hide button */
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 75px;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: var(--teal);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* ==============================
+   7. FORM OPTIONS
+================================ */
+
+.form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 4px 0 27px;
+    font-size: 12px;
+}
+
+.remember-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #596579;
+    cursor: pointer;
+}
+
+.remember-option input {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--teal);
+}
+
+a {
+    color: var(--teal);
+    font-weight: 650;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ==============================
+   8. SIGN-IN BUTTON
+================================ */
+
+.login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 52px;
+    border: none;
+    border-radius: 10px;
+    background: var(--teal);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(20, 125, 131, 0.16);
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.login-button:hover {
+    background: #10696e;
+    box-shadow: 0 10px 22px rgba(20, 125, 131, 0.23);
+    transform: translateY(-1px);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+.login-button span {
+    font-size: 20px;
+}
+
+/* ==============================
+   9. MESSAGES AND FOOTER
+================================ */
+
+.form-message {
+    min-height: 20px;
+    margin-top: 12px;
+    color: #b42318;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.registration-link {
+    margin-top: 25px;
+    text-align: center;
+    color: #697589;
+    font-size: 13px;
+}
+
+.registration-link a {
+    margin-left: 4px;
+}
+
+.security-note {
+    margin-top: 45px;
+    color: #9aa4b4;
+    font-size: 11px;
+    text-align: center;
+}
+
+/* ==============================
+   10. ANIMATION
+================================ */
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==============================
+   11. RESPONSIVE DESIGN
+================================ */
+
+@media (max-width: 900px) {
+    .login-container {
+        grid-template-columns: 0.9fr 1.1fr;
+    }
+
+    .brand-panel {
+        padding: 35px;
+    }
+
+    .form-panel {
+        padding: 40px 28px;
+    }
+
+    .orbit-decoration {
+        right: -100px;
+        opacity: 0.4;
+    }
+
+    .brand-footer {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+}
+
+@media (max-width: 650px) {
+    .login-container {
+        grid-template-columns: 1fr;
+    }
+
+    .brand-panel {
+        min-height: 280px;
+        padding: 28px 25px;
+    }
+
+    .logo {
+        margin-bottom: 32px;
+    }
+
+    .brand-content h1 {
+        font-size: 35px;
+    }
+
+    .brand-description {
+        max-width: 330px;
+        margin-top: 15px;
+        font-size: 13px;
+    }
+
+    .orbit-decoration {
+        top: 60%;
+        right: -85px;
+        width: 160px;
+        height: 160px;
+        opacity: 0.3;
+    }
+
+    .brand-footer {
+        margin-top: 28px;
+    }
+
+    .form-panel {
+        padding: 45px 25px;
+    }
+
+    .form-content {
+        max-width: 430px;
+    }
+
+    .security-note {
+        margin-top: 30px;
+    }
+}
+
+/* Respect users who prefer reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =====================================
+   UNIORBIT CINEMATIC INTRO
+===================================== */
+
+.intro-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            ellipse at 50% 75%,
+            rgba(20, 125, 131, 0.25),
+            transparent 45%
+        ),
+        radial-gradient(
+            circle at 50% 45%,
+            #172c4b 0%,
+            #0b162b 45%,
+            #050b17 100%
+        );
+    color: #ffffff;
+    opacity: 1;
+    visibility: visible;
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+}
+
+/* Smooth exit */
+
+.intro-screen.intro-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Starfield */
+
+.intro-stars {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, #ffffff 1px, transparent 1.5px),
+        radial-gradient(circle, #61d9d0 1px, transparent 1.5px),
+        radial-gradient(circle, #ffffff 1px, transparent 1.5px);
+    background-size: 110px 110px, 170px 170px, 230px 230px;
+    background-position: 0 0, 45px 65px, 90px 25px;
+    opacity: 0.5;
+    animation: star-drift 18s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes star-drift {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-110px);
+    }
+}
+
+/* Orbital rings */
+
+.intro-orbit {
+    position: absolute;
+    width: min(72vw, 720px);
+    height: min(72vw, 720px);
+    border: 1px solid rgba(97, 217, 208, 0.24);
+    border-radius: 50%;
+    box-shadow: 0 0 25px rgba(97, 217, 208, 0.04);
+    pointer-events: none;
+}
+
+.intro-orbit-one {
+    animation: intro-spin 16s linear infinite;
+    transform: scaleY(0.35) rotate(25deg);
+}
+
+.intro-orbit-two {
+    width: min(58vw, 580px);
+    height: min(58vw, 580px);
+    border-color: rgba(255, 255, 255, 0.18);
+    animation: intro-spin 12s linear infinite reverse;
+    transform: scaleY(0.45) rotate(-35deg);
+}
+
+.intro-orbit-three {
+    width: min(82vw, 820px);
+    height: min(82vw, 820px);
+    border-color: rgba(97, 217, 208, 0.12);
+    animation: intro-spin 24s linear infinite;
+    transform: scaleY(0.3) rotate(60deg);
+}
+
+@keyframes intro-spin {
+    from {
+        rotate: 0deg;
+    }
+
+    to {
+        rotate: 360deg;
+    }
+}
+
+/* Intro content */
+
+.intro-content {
+    position: relative;
+    z-index: 2;
+    width: min(90%, 600px);
+    text-align: center;
+    animation: intro-appear 1s ease both;
+}
+
+.intro-logo {
+    display: grid;
+    place-items: center;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 22px;
+    border: 1px solid rgba(97, 217, 208, 0.8);
+    border-radius: 26px;
+    background: linear-gradient(
+        145deg,
+        rgba(97, 217, 208, 0.18),
+        rgba(255, 255, 255, 0.03)
+    );
+    color: #61d9d0;
+    font-size: 58px;
+    font-weight: 800;
+    box-shadow:
+        0 0 25px rgba(97, 217, 208, 0.18),
+        inset 0 0 20px rgba(97, 217, 208, 0.08);
+    animation: logo-glow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes logo-glow {
+    from {
+        box-shadow: 0 0 15px rgba(97, 217, 208, 0.15);
+        transform: scale(1);
+    }
+
+    to {
+        box-shadow: 0 0 38px rgba(97, 217, 208, 0.4);
+        transform: scale(1.04);
+    }
+}
+
+.intro-title {
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 800;
+    letter-spacing: -3px;
+}
+
+.intro-title span {
+    color: #61d9d0;
+    text-shadow: 0 0 30px rgba(97, 217, 208, 0.25);
+}
+
+.intro-college {
+    margin-top: 12px;
+    color: #d3deee;
+    font-size: 13px;
+    letter-spacing: 7px;
+}
+
+.intro-divider {
+    width: 55px;
+    height: 3px;
+    margin: 28px auto;
+    border-radius: 5px;
+    background: #61d9d0;
+    box-shadow: 0 0 16px #61d9d0;
+    animation: divider-pulse 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes divider-pulse {
+    from {
+        opacity: 0.5;
+        transform: scaleX(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scaleX(1.2);
+    }
+}
+
+.intro-tagline {
+    color: #b9c8dc;
+    font-size: 11px;
+    line-height: 1.8;
+    letter-spacing: 2.5px;
+}
+
+/* Loading bar */
+
+.intro-loader {
+    width: min(80%, 420px);
+    height: 7px;
+    margin: 48px auto 18px;
+    overflow: hidden;
+    border: 1px solid rgba(97, 217, 208, 0.35);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.intro-loader-bar {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(
+        90deg,
+        #147d83,
+        #61d9d0,
+        #ffffff
+    );
+    box-shadow: 0 0 15px #61d9d0;
+    transition: width 2.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.intro-loading-text {
+    color: #8499b6;
+    font-size: 10px;
+    letter-spacing: 2px;
+    animation: text-blink 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes text-blink {
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Skip button */
+
+.intro-skip {
+    position: absolute;
+    right: 28px;
+    bottom: 25px;
+    z-index: 3;
+    padding: 11px 17px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.intro-skip:hover {
+    border-color: #61d9d0;
+    background: rgba(97, 217, 208, 0.12);
+}
+
+/* Initial entrance */
+
+@keyframes intro-appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile layout */
+
+@media (max-width: 600px) {
+    .intro-logo {
+        width: 72px;
+        height: 72px;
+        border-radius: 20px;
+        font-size: 46px;
+    }
+
+    .intro-title {
+        letter-spacing: -2px;
+    }
+
+    .intro-college {
+        font-size: 10px;
+        letter-spacing: 5px;
+    }
+
+    .intro-tagline {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+    }
+
+    .intro-loader {
+        margin-top: 35px;
+    }
+
+    .intro-skip {
+        right: 18px;
+        bottom: 18px;
+    }
+}
+
+/* Accessibility: reduce motion when requested */
+
+@media (prefers-reduced-motion: reduce) {
+    .intro-stars,
+    .intro-orbit,
+    .intro-logo,
+    .intro-divider,
+    .intro-loading-text {
+        animation: none !important;
+    }
+
+    .intro-screen,
+    .intro-loader-bar {
+        transition-duration: 0.01ms !important;
+    }
+}

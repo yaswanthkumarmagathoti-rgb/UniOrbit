@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | UniOrbit</title>
+
+    <!-- Connect the CSS file -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Connect the JavaScript file -->
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    
+    <!-- UniOrbit Opening Animation -->
+    <div class="intro-screen" id="introScreen">
+
+        <div class="intro-stars"></div>
+
+        <div class="intro-orbit intro-orbit-one"></div>
+        <div class="intro-orbit intro-orbit-two"></div>
+        <div class="intro-orbit intro-orbit-three"></div>
+
+        <div class="intro-content">
+
+            <div class="intro-logo">U</div>
+
+            <h1 class="intro-title">
+                Uni<span>Orbit</span>
+            </h1>
+
+            <p class="intro-college">RGUKT ONGOLE</p>
+
+            <div class="intro-divider"></div>
+
+            <p class="intro-tagline">
+                CONNECTING CAMPUS, CREATING POSSIBILITIES
+            </p>
+
+            <div class="intro-loader">
+                <div class="intro-loader-bar" id="introLoaderBar"></div>
+            </div>
+
+            <p class="intro-loading-text">ENTERING YOUR CAMPUS UNIVERSE...</p>
+
+        </div>
+
+        <button type="button" class="intro-skip" id="skipIntro">
+            Skip intro →
+        </button>
+
+    </div>
+    <!-- End UniOrbit Opening Animation -->
+
+    <main class="login-container">
+
+        <!-- Left branding section -->
+        <section class="brand-panel">
+            <div class="brand-content">
+
+                <div class="logo">
+                    <span class="logo-icon">U</span>
+                    <span class="logo-name">UniOrbit</span>
+                </div>
+
+                <p class="brand-label">RGUKT ONGOLE</p>
+
+                <h1>
+                    Your campus.<br>
+                    Your community.<br>
+                    <span>Your future.</span>
+                </h1>
+
+                <p class="brand-description">
+                    One connected space for learning, collaboration,
+                    campus updates, and university life.
+                </p>
+
+                <div class="orbit-decoration" aria-hidden="true">
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
+                    <div class="orbit orbit-three"></div>
+                    <div class="orbit-core"></div>
+                </div>
+
+                <p class="brand-footer">
+                    CONNECTING CAMPUS, CREATING POSSIBILITIES
+                </p>
+
+            </div>
+        </section>
+
+        <!-- Right login section -->
+        <section class="form-panel">
+            <div class="form-content">
+
+                <p class="welcome-label">WELCOME BACK</p>
+
+                <h2>Sign in to UniOrbit</h2>
+
+                <p class="form-description">
+                    Access your university portal and stay connected.
+                </p>
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+                        <label for="email">University email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@university.edu"
+                            autocomplete="username"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+
+                        <div class="password-wrapper">
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="togglePassword"
+                                class="password-toggle"
+                                aria-label="Show password"
+                                aria-pressed="false"
+                            >
+                                Show
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-option">
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                                name="rememberMe"
+                            >
+                            <span>Remember me</span>
+                        </label>
+
+                        <a href="#" id="forgotPassword">
+                            Forgot password?
+                        </a>
+                    </div>
+
+                    <button type="submit" class="login-button">
+                        Sign In
+                        <span aria-hidden="true">→</span>
+                    </button>
+
+                    <p id="formMessage" class="form-message"
+                       role="status" aria-live="polite"></p>
+
+                </form>
+
+                <div class="registration-link">
+                    Don't have an account?
+                    <a href="#" id="registerLink">Create account</a>
+                </div>
+
+                <p class="security-note">
+                    UniOrbit · A smarter campus experience
+                </p>
+
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
